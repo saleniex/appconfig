@@ -4,7 +4,7 @@ import OptionReaderFactory, {OptionReaderConfig} from './OptionReaderFactory';
 
 export default class OptionLoader {
     private _readers: OptionReader[] = [];
-    private _options: object = {};
+    private _options: object;
 
 
     public addReadersFromConfig(config: OptionReaderConfig[]): void {
@@ -37,6 +37,9 @@ export default class OptionLoader {
 
 
     public loadedOptions(): object {
+        if ( ! this._options) {
+            throw new Error('Cannot get loaded options prior loading is done. Call load() first.');
+        }
         return this._options;
     }
 

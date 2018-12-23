@@ -55,4 +55,10 @@ describe('OptionsLoader', () => {
 
             })
     });
+
+    it('Throws if try get loaded options prior loading', () => {
+        expect(() => {
+            new OptionLoader().loadedOptions();
+        }).toThrowError('Cannot get loaded options prior loading is done. Call load() first.');
+    });
 });
