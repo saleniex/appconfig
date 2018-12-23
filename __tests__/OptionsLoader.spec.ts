@@ -1,5 +1,5 @@
 import OptionLoader from '../lib/OptionLoader';
-import DumbOptionReader from './__mock__/DumbOptionReader';
+import DumbOptionReader from '../lib/DumbOptionReader';
 import JsonOptionReader from '../lib/JsonOptionReader';
 import {OptionReaderType} from '../lib/OptionReaderFactory';
 

@@ -1,4 +1,4 @@
-import OptionReader from '../../lib/OptionReader';
+import OptionReader from './OptionReader';
 
 export default class DumbOptionReader extends OptionReader {
     private _content: object;
