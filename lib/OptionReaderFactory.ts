@@ -1,5 +1,6 @@
 import OptionReader from './OptionReader';
 import JsonOptionReader from './JsonOptionReader';
+import DumbOptionReader from './DumbOptionReader';
 
 
 interface OptionReaderConfig {
@@ -10,6 +11,7 @@ interface OptionReaderConfig {
 
 enum OptionReaderType {
     JSON = 'json',
+    DUMB = 'dumb',
 }
 
 export {OptionReaderConfig, OptionReaderType};
@@ -30,6 +32,9 @@ export default class OptionReaderFactory {
         switch (type) {
             case OptionReaderType.JSON:
                 return new JsonOptionReader(source);
+
+            case OptionReaderType.DUMB:
+                return new DumbOptionReader(JSON.parse(source));
 
             default:
                 throw new Error(`Cannot create OptionReader. Unknown type '${type}'.`);
