@@ -1,25 +1,18 @@
 import AppConfig from './AppConfig';
-import AppConfigOptions from './AppConfigOptions';
-import * as fs from "fs";
+import {OptionReaderConfig} from './OptionReaderFactory';
+import OptionLoader from './OptionLoader';
+import Environment from './Environment';
 
-function createAppConfig(options: AppConfigOptions) {
-    require('dotenv').config();
-    const defaults = loadDefaults(options.defaultsPath);
-    AppConfig.create(defaults, process.env);
+async function createAppConfig(config: OptionReaderConfig[]): Promise<void> {
+    const loader = new OptionLoader();
+    loader.addReadersFromConfig(config);
+    await loader.load();
+    AppConfig.create(loader.loadedOptions(), Environment.getOptions());
 }
 
 function appConfig(): AppConfig {
     return AppConfig.instance();
 }
 
-function loadDefaults(path: string): object {
-    if (!fs.existsSync(this._options.defaultsPath)) {
-        throw new Error(`Cannot load app config defaults from '${this._options.defaultsPath}'. Path does not exists.`);
-    }
-    const defaultsFileContent = fs.readFileSync(path);
-
-    return JSON.parse(defaultsFileContent.toString());
-}
-
-export {createAppConfig, AppConfigOptions};
+export {createAppConfig};
 export default appConfig;
