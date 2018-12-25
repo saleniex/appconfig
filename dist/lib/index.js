@@ -16,5 +16,9 @@ exports.createAppConfig = createAppConfig;
 function appConfig() {
     return AppConfig_1.default.instance();
 }
+function appCfg(name) {
+    return AppConfig_1.default.instance().get(name);
+}
+exports.appCfg = appCfg;
 exports.default = appConfig;
 //# sourceMappingURL=index.js.map

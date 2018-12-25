@@ -14,5 +14,9 @@ function appConfig(): AppConfig {
     return AppConfig.instance();
 }
 
-export {createAppConfig};
+function appCfg(name: string): string {
+    return AppConfig.instance().get(name);
+}
+
+export {createAppConfig, appCfg};
 export default appConfig;
