@@ -9,11 +9,9 @@ Configuration singleton is created in the main file. If **defaultsPath** propert
 the moment of config creation. Defaults must be a JSON file.
 
 ```javascript 1.8
-import {createAppConfig} from 'appconfig';
+import {createAppConfig} from 'cfgapp';
 
-createAppConfig({
-    defaultsPath: "./defaults.json",
-});
+createAppConfig([{type: 'json', source: './constants.json'}]);
 ```
 
 ## Use config
@@ -27,9 +25,9 @@ In cases when option itself must persist in `.env` for documentation purposes bu
 can be set to "~" (tilde).
 
 ```javascript 1.8
-import appConfig from 'appconfig';
+import appCfg from 'cfgapp';
 
-const result = appConfig().get('MY_OPTION');
+const result = appCfg('MY_OPTION');
 console.log(result);
 ```
 
@@ -55,14 +53,11 @@ PASS=TheVerySecretPass
 ```
 
 ```javascript 1.8
-import {createAppConfig} from 'appconfig';
-import appConfig from 'appconfig';
+import {createAppConfig, appCfgObject} from 'cfgapp';
 
-createAppConfig({
-    defaultsPath: "./defaults.json",
-});
+createAppConfig([{type: 'json', source: './constants.json'}]);
 
-const result = appConfig().asObject('COMPLEX_OPT');
+const result = appCfgObject('COMPLEX_OPT');
 console.log(result['pass']); // outputs: TheVerySecretPass
 
 ```
