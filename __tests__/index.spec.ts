@@ -1,4 +1,4 @@
-import appConfig, {appCfg, createAppConfig} from '../lib';
+import appCfg, {createAppConfig, appConfigInstance} from '../lib';
 import Environment from '../lib/Environment';
 import {OptionReaderType} from '../lib/OptionReaderFactory';
 
@@ -15,9 +15,9 @@ describe('index', () => {
         }];
         createAppConfig(config)
             .then(() => {
-                expect(appConfig().get('opt01'))
+                expect(appConfigInstance().get('opt01'))
                     .toBe('_O01_env_');
-                expect(appConfig().get('opt02'))
+                expect(appConfigInstance().get('opt02'))
                     .toBe('_O02_');
                 expect(appCfg('opt01'))
                     .toBe('_O01_env_');

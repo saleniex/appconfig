@@ -10,7 +10,7 @@ async function createAppConfig(config: OptionReaderConfig[]): Promise<void> {
     AppConfig.create(loader.loadedOptions(), Environment.getOptions());
 }
 
-function appConfig(): AppConfig {
+function appConfigInstance(): AppConfig {
     return AppConfig.instance();
 }
 
@@ -18,5 +18,9 @@ function appCfg(name: string): string {
     return AppConfig.instance().get(name);
 }
 
-export {createAppConfig, appCfg};
-export default appConfig;
+function appCfgObject(name: string): object {
+    return AppConfig.instance().asObject(name);
+}
+
+export {createAppConfig, appConfigInstance, appCfgObject};
+export default appCfg;

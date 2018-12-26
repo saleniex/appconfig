@@ -13,12 +13,16 @@ function createAppConfig(config) {
     });
 }
 exports.createAppConfig = createAppConfig;
-function appConfig() {
+function appConfigInstance() {
     return AppConfig_1.default.instance();
 }
+exports.appConfigInstance = appConfigInstance;
 function appCfg(name) {
     return AppConfig_1.default.instance().get(name);
 }
-exports.appCfg = appCfg;
-exports.default = appConfig;
+function appCfgObject(name) {
+    return AppConfig_1.default.instance().asObject(name);
+}
+exports.appCfgObject = appCfgObject;
+exports.default = appCfg;
 //# sourceMappingURL=index.js.map
